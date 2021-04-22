@@ -1,0 +1,16 @@
+{
+    "id":0,
+    "firstName":"Lin",
+    "lastName":"Vincent",
+    "age":10,
+    "Friends":[
+        {
+            "name":"Andy",
+            "age":20
+        },
+        {
+            "name":"Teddy",
+            "age":30
+        }
+    ]
+}
