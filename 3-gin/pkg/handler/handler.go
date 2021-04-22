@@ -16,7 +16,7 @@ type Handler struct {
 type ToDo struct {
 	Content  string
 	Complete bool
-	Id       string
+	Id       bson.ObjectId `json:"id" bson:"_id,omitempty"`
 }
 
 func (h *Handler) GetIndex(c *gin.Context) {

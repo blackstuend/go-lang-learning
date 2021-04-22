@@ -21,7 +21,7 @@
             </div>
             <div class="ul">
                 {{range $item := .TodoItems}}
-                        <li>{{$item.Content}} <input type="checkbox"></li>
+                        <li>{{$item.Id}} <input type="checkbox"> <button class="btn btn-danger btn-sm ml-2">刪除</button></li>
                 {{end}}
             </div>
         </div>
@@ -38,5 +38,6 @@
         let todoBody = document.querySelector("#todoBody").value
 
         response = await axios.post("/addToDo",{content:todoBody})
+        location.reload()
     })
 </script>

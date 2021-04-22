@@ -14,8 +14,10 @@ func main() {
 	if err != nil {
 		panic("")
 	}
-
+	// get server port
 	port := config.Section("runtime").Key("port").MustString(":5000")
+
+	// connect to mgo and get collection
 	session, _ := mgo.Dial("127.0.0.1:27017")
 	db := session.DB("todo")
 	c := db.C("login.info")
