@@ -14,6 +14,7 @@ func main() {
 	if err != nil {
 		panic("")
 	}
+
 	// get server port
 	port := config.Section("runtime").Key("port").MustString(":5000")
 
@@ -31,6 +32,7 @@ func main() {
 
 	r.GET("/", h.GetIndex)
 	r.POST("/addToDo", h.AddTodo)
-
+	r.DELETE("/removeTodo/:id", h.RemoveTodo)
+	r.PUT("updateTodo/:id", h.UpdateCompleted)
 	r.Run(port)
 }

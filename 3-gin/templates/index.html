@@ -21,7 +21,7 @@
             </div>
             <div class="ul">
                 {{range $item := .TodoItems}}
-                        <li>{{$item.Id}} <input type="checkbox"> <button class="btn btn-danger btn-sm ml-2">刪除</button></li>
+                        <li>{{$item.Content}} <input type="checkbox" class="checkbox"  data-id="{{$item.ID}}"> <button class="btn btn-danger btn-sm ml-2 removeBtn" data-id="{{$item.ID}}">刪除</button></li>
                 {{end}}
             </div>
         </div>
@@ -33,11 +33,31 @@
 </html>
 
 <script>
-    const add = document.querySelector("#addTodo")
-    add.addEventListener('click',async ()=>{
+    const addBtn = document.querySelector("#addTodo")
+    addBtn.addEventListener('click',async ()=>{
         let todoBody = document.querySelector("#todoBody").value
 
         response = await axios.post("/addToDo",{content:todoBody})
         location.reload()
+    })
+    const removeBtns = document.querySelectorAll(".removeBtn")
+    removeBtns.forEach(item=>{
+        item.addEventListener('click',async function(){
+            id = this.getAttribute("data-id")
+            response = await axios.delete(`/removeTodo/${id}`,)
+            console.log("response",response.data)
+            location.reload()
+        })
+    })
+    // change checkbox
+    const checkboxs = document.querySelectorAll(".checkbox")
+    checkboxs.forEach(item=>{
+        item.addEventListener('change',async function(event){
+            completed = event.target.checked
+            id = this.getAttribute("data-id")
+            response = await axios.put(`/updateTodo/${id}`,{Complete:completed})
+            // console.log("response",response.data)
+            // location.reload()
+        })
     })
 </script>
