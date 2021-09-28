@@ -51,7 +51,7 @@ func read2(fileName string) []byte {
 	return f
 }
 
-func main() {
+func main () {
 	fileName := "test.json"
 	buffer := read0(fileName)
 	fmt.Printf("Use Read0 Func %v\n", string(buffer))

@@ -21,6 +21,7 @@ type User struct {
 }
 
 func openJsonFile(fileName string) []byte {
+
 	file, err := os.Open(fileName)
 	if err != nil {
 		panic(err)
@@ -39,13 +40,6 @@ func openJsonFile(fileName string) []byte {
 const (
 	fileName string = "Friend.json"
 )
-
-func main() {
-	staticJson()
-	fileJson()
-	receiveAllData()
-
-}
 
 func staticJson() {
 	var jsonString string = `{
@@ -84,9 +78,16 @@ func fileJson() {
 func receiveAllData() {
 	var user map[string]interface{}
 	jsonBuffer := openJsonFile(fileName)
-	err := json.Unmarshal([]byte(jsonBuffer), &user)
+	err := json.Unmarshal(jsonBuffer, &user)
 	if err != nil {
 		fmt.Printf("%v", err)
 	}
 	fmt.Printf("%+v\n", user)
+}
+
+
+func main() {
+	staticJson()
+	fileJson()
+	receiveAllData()
 }
